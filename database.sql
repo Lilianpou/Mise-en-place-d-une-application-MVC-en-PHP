@@ -17,6 +17,21 @@ CREATE TABLE IF NOT EXISTS users (
     email VARCHAR(150) NOT NULL UNIQUE
 ) ENGINE=InnoDB;
 
+-- Création de la table trajets
+CREATE TABLE IF NOT EXISTS trajets (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    agence_depart_id INT NOT NULL,
+    agence_arrivee_id INT NOT NULL,
+    date_heure_depart DATETIME NOT NULL,
+    date_heure_arrivee DATETIME NOT NULL,
+    places_totales INT NOT NULL,
+    places_prises INT DEFAULT 0,
+    contact_id INT NOT NULL,
+    FOREIGN KEY (agence_depart_id) REFERENCES agences(id) ON DELETE CASCADE,
+    FOREIGN KEY (agence_arrivee_id) REFERENCES agences(id) ON DELETE CASCADE,
+    FOREIGN KEY (contact_id) REFERENCES users(id) ON DELETE CASCADE
+) ENGINE=InnoDB;
+
 -- Insertion des agences
 INSERT INTO agences (nom) VALUES 
 ('Paris'),
