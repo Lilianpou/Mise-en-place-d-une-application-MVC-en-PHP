@@ -1,0 +1,66 @@
+$primary: #0074c7;
+$secondary: #00497c;
+$dark: #384050;
+$light: #f1f8fc;
+$danger: #cd2c2e;
+$success: #82c864;
+
+// Import Bootstrap (si vous utilisez un compilateur SASS)
+// @import "bootstrap/scss/bootstrap";
+
+// Personnalisation
+body {
+    background-color: $light;
+    color: $dark;
+}
+
+.navbar {
+    background-color: #fff;
+    border-bottom: 2px solid $dark;
+    border-radius: 0 0 15px 15px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.navbar-brand {
+    font-weight: bold;
+    color: $dark !important;
+}
+
+.btn-primary {
+    background-color: $dark;
+    border-color: $dark;
+    &:hover {
+        background-color: lighten($dark, 10%);
+    }
+}
+
+.btn-dark {
+    background-color: $dark;
+    border-color: $dark;
+}
+
+h2 {
+    color: $dark;
+    margin-top: 2rem;
+    margin-bottom: 1.5rem;
+}
+
+.table {
+    background-color: #fff;
+    thead {
+        background-color: $dark;
+        color: #fff;
+        th {
+            border: none;
+        }
+    }
+}
+
+.action-icon {
+    color: $dark;
+    margin: 0 5px;
+    text-decoration: none;
+    &:hover {
+        color: $primary;
+    }
+}

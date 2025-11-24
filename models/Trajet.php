@@ -140,4 +140,22 @@ class Trajet
         $stmt->execute();
         return $stmt->rowCount() > 0;
     }
+
+    // Récupérer les trajets disponibles (futurs et avec places)
+    public function getAvailableTrajets()
+    {
+        $query = "SELECT t.*, 
+                         ad.nom as agence_depart_nom, 
+                         aa.nom as agence_arrivee_nom
+                  FROM " . $this->table . " t
+                  LEFT JOIN agences ad ON t.agence_depart_id = ad.id
+                  LEFT JOIN agences aa ON t.agence_arrivee_id = aa.id
+                  WHERE t.date_heure_depart > NOW() 
+                  AND t.places_prises < t.places_totales
+                  ORDER BY t.date_heure_depart ASC";
+
+        $stmt = $this->conn->prepare($query);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 }
