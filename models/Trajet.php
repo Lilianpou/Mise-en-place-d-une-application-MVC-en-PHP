@@ -98,4 +98,46 @@ class Trajet
         }
         return false;
     }
+
+    // Modifier un trajet
+    public function update($id, $data)
+    {
+        $query = "UPDATE " . $this->table . " 
+                  SET agence_depart_id=:agence_depart_id, 
+                      agence_arrivee_id=:agence_arrivee_id, 
+                      date_heure_depart=:date_heure_depart, 
+                      date_heure_arrivee=:date_heure_arrivee, 
+                      places_totales=:places_totales, 
+                      places_prises=:places_prises, 
+                      contact_id=:contact_id
+                  WHERE id = :id";
+
+        $stmt = $this->conn->prepare($query);
+
+        // Nettoyage et liaison
+        $stmt->bindParam(":agence_depart_id", $data['agence_depart_id']);
+        $stmt->bindParam(":agence_arrivee_id", $data['agence_arrivee_id']);
+        $stmt->bindParam(":date_heure_depart", $data['date_heure_depart']);
+        $stmt->bindParam(":date_heure_arrivee", $data['date_heure_arrivee']);
+        $stmt->bindParam(":places_totales", $data['places_totales']);
+        $stmt->bindParam(":places_prises", $data['places_prises']);
+        $stmt->bindParam(":contact_id", $data['contact_id']);
+        $stmt->bindParam(":id", $id);
+
+        if ($stmt->execute()) {
+            return true;
+        }
+        return false;
+    }
+
+    // Vérifier si un utilisateur est l'auteur du trajet
+    public function isAuthor($trajetId, $userId)
+    {
+        $query = "SELECT id FROM " . $this->table . " WHERE id = :id AND contact_id = :contact_id";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':id', $trajetId);
+        $stmt->bindParam(':contact_id', $userId);
+        $stmt->execute();
+        return $stmt->rowCount() > 0;
+    }
 }

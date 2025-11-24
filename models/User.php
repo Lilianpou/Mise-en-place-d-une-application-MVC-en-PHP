@@ -11,6 +11,7 @@ class User
     public $prenom;
     public $telephone;
     public $email;
+    public $role;
 
     public function __construct()
     {
@@ -35,29 +36,5 @@ class User
         $stmt->bindParam(':id', $id);
         $stmt->execute();
         return $stmt->fetch(PDO::FETCH_ASSOC);
-    }
-
-    // Créer un utilisateur
-    public function create($nom, $prenom, $telephone, $email)
-    {
-        $query = "INSERT INTO " . $this->table . " SET nom=:nom, prenom=:prenom, telephone=:telephone, email=:email";
-        $stmt = $this->conn->prepare($query);
-
-        // Nettoyage des données
-        $nom = htmlspecialchars(strip_tags($nom));
-        $prenom = htmlspecialchars(strip_tags($prenom));
-        $telephone = htmlspecialchars(strip_tags($telephone));
-        $email = htmlspecialchars(strip_tags($email));
-
-        // Liaison des paramètres
-        $stmt->bindParam(":nom", $nom);
-        $stmt->bindParam(":prenom", $prenom);
-        $stmt->bindParam(":telephone", $telephone);
-        $stmt->bindParam(":email", $email);
-
-        if ($stmt->execute()) {
-            return true;
-        }
-        return false;
     }
 }

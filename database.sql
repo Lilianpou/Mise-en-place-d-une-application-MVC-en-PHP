@@ -14,7 +14,8 @@ CREATE TABLE IF NOT EXISTS users (
     nom VARCHAR(100) NOT NULL,
     prenom VARCHAR(100) NOT NULL,
     telephone VARCHAR(20),
-    email VARCHAR(150) NOT NULL UNIQUE
+    email VARCHAR(150) NOT NULL UNIQUE,
+    role ENUM('user', 'admin') DEFAULT 'user'
 ) ENGINE=InnoDB;
 
 -- Création de la table trajets
