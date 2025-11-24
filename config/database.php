@@ -2,7 +2,7 @@
 class Database
 {
     private $host = "localhost";
-    private $db_name = "nom_de_votre_base";
+    private $db_name = "mvc_app_db";
     private $username = "root";
     private $password = "";
     public $conn;
