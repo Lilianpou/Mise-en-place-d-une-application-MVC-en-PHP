@@ -1,6 +1,9 @@
 <?php
+session_start();
 // Définition de la racine du projet
 define('ROOT', str_replace('index.php', '', $_SERVER['SCRIPT_FILENAME']));
+// Définition de la racine web du projet
+define('WEBROOT', str_replace('index.php', '', $_SERVER['SCRIPT_NAME']));
 
 // Routing simple
 $params = explode('/', $_GET['url'] ?? '');
