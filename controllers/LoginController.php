@@ -34,6 +34,7 @@ class LoginController
                     'nom' => $user['nom'],
                     'prenom' => $user['prenom'],
                     'email' => $user['email'],
+                    'telephone' => $user['telephone'],
                     'role' => $user['role']
                 ];
                 header('Location: ' . WEBROOT);
