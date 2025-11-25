@@ -24,7 +24,7 @@
                     <?php if ($_SESSION['user']['role'] === 'admin'): ?>
                         <a href="<?= WEBROOT ?>users" class="btn btn-secondary">Utilisateurs</a>
                         <a href="<?= WEBROOT ?>agences" class="btn btn-secondary">Agences</a>
-                        <a href="<?= WEBROOT ?>trajets" class="btn btn-secondary">Trajets</a>
+                        <a href="<?= WEBROOT ?>" class="btn btn-secondary">Trajets</a>
                     <?php else: ?>
                         <a href="<?= WEBROOT ?>trajet/create" class="btn btn-custom-dark">Créer un trajet</a>
                     <?php endif; ?>

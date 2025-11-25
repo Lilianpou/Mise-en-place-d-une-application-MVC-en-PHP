@@ -24,7 +24,7 @@
                     <?php if ($_SESSION['user']['role'] === 'admin'): ?>
                         <a href="<?= WEBROOT ?>users" class="btn btn-secondary">Utilisateurs</a>
                         <a href="<?= WEBROOT ?>agences" class="btn btn-secondary">Agences</a>
-                        <a href="<?= WEBROOT ?>trajets" class="btn btn-secondary">Trajets</a>
+                        <a href="<?= WEBROOT ?>" class="btn btn-secondary">Trajets</a>
                     <?php else: ?>
                         <a href="<?= WEBROOT ?>trajet/create" class="btn btn-custom-dark">Créer un trajet</a>
                     <?php endif; ?>
@@ -82,8 +82,10 @@
                                         <button type="button" class="btn btn-link action-icon p-0 border-0" data-bs-toggle="modal" data-bs-target="#modalTrajet<?php echo $trajet['id']; ?>" title="Voir">
                                             <i class="fas fa-eye"></i>
                                         </button>
-                                        <?php if ($_SESSION['user']['role'] === 'admin' || $_SESSION['user']['id'] == $trajet['contact_id']): ?>
+                                        <?php if ($_SESSION['user']['id'] == $trajet['contact_id']): ?>
                                             <a href="<?= WEBROOT ?>trajet/edit/<?php echo $trajet['id']; ?>" class="action-icon" title="Modifier"><i class="fas fa-edit"></i></a>
+                                        <?php endif; ?>
+                                        <?php if ($_SESSION['user']['role'] === 'admin' || $_SESSION['user']['id'] == $trajet['contact_id']): ?>
                                             <a href="<?= WEBROOT ?>trajet/delete/<?php echo $trajet['id']; ?>" class="action-icon" title="Supprimer"><i class="fas fa-trash-alt"></i></a>
                                         <?php endif; ?>
 
