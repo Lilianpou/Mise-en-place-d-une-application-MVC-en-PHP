@@ -146,10 +146,15 @@ class Trajet
     {
         $query = "SELECT t.*, 
                          ad.nom as agence_depart_nom, 
-                         aa.nom as agence_arrivee_nom
+                         aa.nom as agence_arrivee_nom,
+                         u.nom as contact_nom, 
+                         u.prenom as contact_prenom, 
+                         u.telephone as contact_telephone, 
+                         u.email as contact_email
                   FROM " . $this->table . " t
                   LEFT JOIN agences ad ON t.agence_depart_id = ad.id
                   LEFT JOIN agences aa ON t.agence_arrivee_id = aa.id
+                  LEFT JOIN users u ON t.contact_id = u.id
                   WHERE t.date_heure_depart > NOW() 
                   AND t.places_prises < t.places_totales
                   ORDER BY t.date_heure_depart ASC";
